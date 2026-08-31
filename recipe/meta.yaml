@@ -38,6 +38,8 @@ requirements:
     - fiona
     - pystac-client
     - sliderule
+    - xarray-spatial
+    - dask
 
 test:
   imports:
