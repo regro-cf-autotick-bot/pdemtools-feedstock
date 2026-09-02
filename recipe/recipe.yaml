@@ -1,0 +1,65 @@
+schema_version: 1
+
+context:
+  name: pdemtools
+  version: "1.2.5"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://files.pythonhosted.org/packages/source/${{ name[0] }}/${{ name }}/pdemtools-${{ version }}.tar.gz
+  sha256: 2189a3671e0e88b8463fedfd76ccf0f6406efaca8cdc1a559f1d62b9a99fd6cb
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  build:
+    - setuptools
+  host:
+    - python ${{ python_min }}
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - rioxarray
+    - rasterio
+    - geopandas
+    - pandas
+    - shapely
+    - numpy
+    - gdal
+    - opencv
+    - scipy
+    - numba
+    - pyarrow
+    - fiona
+    - pystac-client
+    - sliderule
+    - xarray-spatial >=0.9.3
+    - dask
+
+tests:
+  - python:
+      imports:
+        - pdemtools
+      pip_check: true
+      python_version:
+        - ${{ python_min }}
+        - "*"
+
+about:
+  summary: Conveniently search, download, and preprocess ArcticDEM and REMA products.
+  license: MIT
+  license_file: LICENSE.md
+  homepage: https://github.com/trchudley/pdemtools
+  repository: https://github.com/trchudley/pdemtools
+  documentation: https://pdemtools.readthedocs.io/
+
+extra:
+  recipe-maintainers:
+    - trchudley
