@@ -37,7 +37,7 @@ requirements:
     - fiona
     - pystac-client
     - sliderule
-    - xarray-spatial
+    - xarray-spatial >=0.9.3
     - dask
 
 test:
